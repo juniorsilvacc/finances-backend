@@ -91,16 +91,19 @@ class TransactionSummaryView(APIView):
                 Transaction.objects
                     # Utiliza 'iexact' para ignorar maiúsculas/minúsculas
                     .filter(type__iexact='outcome')
+                    # Agrupa os resultados pela categoria da transação, acessando o título da categoria
                     .values('category__title')
+                    # Realiza uma soma do valor ('value') das transações por categoria
                     .annotate(total_value=Sum('value'))
                     .order_by('-total_value')
             )
 
+            # Cria um dicionário com o título da categoria como chave e o valor total como valor
             summary_data = {
                 item['category__title']: float(item['total_value'] or 0)
                 for item in summary
             }
 
-            return Response(summary_data)
+            return Response(summary_data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"Detail": "Erro inesperado: " + str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
