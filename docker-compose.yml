@@ -1,0 +1,30 @@
+services:
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: finances-db
+      POSTGRES_USER: finances-user
+      POSTGRES_PASSWORD: root
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DB_NAME: finances-db
+      DB_USER: finances-user
+      DB_PASSWORD: root
+      DB_HOST: db
+      DB_PORT: 5432
+
+volumes:
+  postgres_data:
