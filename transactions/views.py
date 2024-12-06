@@ -6,8 +6,10 @@ from transactions.serializers import TransactionSerializer
 from rest_framework.exceptions import ValidationError
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404
+from drf_spectacular.utils import extend_schema
 
 
+@extend_schema(tags=["Transactions"])
 class TransactionCreateView(APIView):
 
     def post(self, request):
@@ -38,6 +40,7 @@ class TransactionCreateView(APIView):
             return Response({"Detail": "Erro inesperado: " + str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+@extend_schema(tags=["Transactions"])
 class TransactionListView(APIView):
 
     def get(self, request):
@@ -69,6 +72,7 @@ class TransactionListView(APIView):
             return Response({"Detail": "Erro inesperado: " + str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+@extend_schema(tags=["Transactions"])
 class TransactionDeleteView(APIView):
 
     def delete(self, request, pk):
@@ -83,6 +87,7 @@ class TransactionDeleteView(APIView):
             return Response({"Detail": "Erro inesperado: " + str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+@extend_schema(tags=["Transactions"])
 class TransactionSummaryView(APIView):
 
     def get(self, request):
