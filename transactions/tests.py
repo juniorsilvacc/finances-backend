@@ -4,7 +4,7 @@ from django.test import TestCase
 from transactions.models import Category, Transaction
 
 
-class TransactionCreateViewTest(TestCase):
+class TransactionAPICreateViewTest(TestCase):
 
     def setUp(self):
         self.category = Category.objects.create(title="Despesas")
@@ -57,7 +57,7 @@ class TransactionCreateViewTest(TestCase):
         self.assertIn("O tipo de transação deve ser 'income' ou 'outcome'.", str(response.data))
 
 
-class TransactionListViewTest(TestCase):
+class TransactionAPIListViewTest(TestCase):
 
     def setUp(self):
         self.category_1 = Category.objects.create(title="Salário")
@@ -75,7 +75,7 @@ class TransactionListViewTest(TestCase):
         self.assertEqual(response.data['total_balance'], 6000.00)
 
 
-class TransactionDeleteViewTest(TestCase):
+class TransactionAPIDeleteViewTest(TestCase):
 
     def setUp(self):
         self.category = Category.objects.create(title="Alimentação")
@@ -91,7 +91,7 @@ class TransactionDeleteViewTest(TestCase):
             self.transaction.refresh_from_db()
 
 
-class TransactionSummaryViewTest(TestCase):
+class TransactionAPISummaryViewTest(TestCase):
 
     def setUp(self):
         self.category_1 = Category.objects.create(title="Casa")

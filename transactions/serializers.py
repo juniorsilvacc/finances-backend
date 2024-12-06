@@ -6,7 +6,7 @@ from categories.models import Category
 class TransactionSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     type = serializers.ChoiceField(
-        choices=['income', 'outcome'], 
+        choices=['income', 'outcome'],
         error_messages={'invalid_choice': "O tipo de transação deve ser 'income' ou 'outcome'."}
     )
 
