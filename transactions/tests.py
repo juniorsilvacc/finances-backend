@@ -42,7 +42,7 @@ class TransactionAPICreateViewTest(TestCase):
             'category': self.category.id
         }
         response = self.client.post('/api/v1/transactions/', data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('O valor da transação deve ser maior que zero.', str(response.data))
 
     def test_create_transaction_type_invalid(self):
