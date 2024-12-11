@@ -40,3 +40,6 @@ O <b>GoFinances</b> é uma API RESTFul para gerenciar suas finanças pessoais. E
 5. Execute o comando `python manage.py makemigrations`. Cria novos arquivos de migração com base nas alterações feitas nos modelos (dentro do contêiner)
 6. Execute o comando `python manage.py migrate`. Aplica as migrações pendentes ao banco de dados (dentro do contêiner)
 7. Execute o comando `python manage.py createsuperuser`. Inicia o processo de criação do superu-suário (dentro do contêiner)
+
+Acessar a aplicação
+[http://localhost:8000](http://localhost:8000)
